@@ -1,0 +1,19 @@
+
+// @import "node_modules/bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/type";
+
+.controls {
+  margin-bottom: 40px;
+  .disabled {
+    position: relative;
+  }
+
+  button {
+    margin-right: 20px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+  
+}

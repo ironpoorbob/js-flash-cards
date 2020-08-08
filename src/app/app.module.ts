@@ -3,10 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { AnswersComponent } from './answers/answers.component';
+import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
+import { ControlsComponent } from './controls/controls.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuestionsComponent,
+    AnswersComponent,
+    ControlsComponent
   ],
   imports: [
     BrowserModule,

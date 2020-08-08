@@ -1,0 +1,27 @@
+
+.answers {
+  strong, .subnotes {
+    color: #A1A1A1;
+  }
+  .answer {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #434343;
+    input {
+      margin-right: 20px;
+    }
+  }
+  .subnotes {
+    padding: 0 20px;
+  }
+
+
+
+  li {
+    list-style-type: none;
+    input {
+      margin-right: 20px;
+
+    }
+  }
+}
