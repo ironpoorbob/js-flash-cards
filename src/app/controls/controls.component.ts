@@ -34,16 +34,16 @@ export class ControlsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.isValid = true;
-    console.log('initial data: ', this.data);
+    // console.log('initial data: ', this.data);
   }
 
   public getSubscribeData(data) {
-    console.log('questions data: ', data);
+    // console.log('questions data: ', data);
     
   }
 
   public prevDisabled() {
-    console.log('button data: ', this.data);
+    // console.log('button data: ', this.data);
     if(this.data){
       if (this.data.count === 0) {
         console.log('hit the end');
@@ -53,7 +53,7 @@ export class ControlsComponent implements OnInit {
   }
 
   public nextDisabled() {
-    console.log('button data: ', this.data);
+    // console.log('button data: ', this.data);
     if(this.data){
       if (this.data.count >= this.data.testDataLength-1) {
         console.log('hit the end');
@@ -64,7 +64,7 @@ export class ControlsComponent implements OnInit {
 
   public isInvalid(data) {
     // this.nextDisabled = true;
-    console.log('button data: ', data);
+    // console.log('button data: ', data);
     if (data.count >= data.testDataLength) {
       console.log('hit the end');
       // return true;

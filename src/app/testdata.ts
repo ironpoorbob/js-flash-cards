@@ -14,7 +14,7 @@ export const testdata = [
   },
   {
     category: "choice",
-    choice: "4",
+    choice: "3",
     question: "Inside which HTML element do we put the JavaScript?",
     answer: [
     { a: "<javascript>" },
@@ -26,7 +26,7 @@ export const testdata = [
   },
   {
     category: "choice",
-    choice: "2",
+    choice: "1",
     question: "What are JavaScript Data Types?",
     answer: [
       { a: "String, Boolean, Object, null, var" },

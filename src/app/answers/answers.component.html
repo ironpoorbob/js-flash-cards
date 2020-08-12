@@ -1,5 +1,18 @@
 <div class="answers">
-  <div class="answer" *ngIf="data.category === 'flash'">
+  <div class="answer flash" *ngIf="data.category === 'flash'">
     <p><strong>A:</strong> {{data.answer}}</p>
+  </div>
+
+  <div class="answer" *ngIf="data.category === 'choice'">
+    <div *ngFor="let answer of data.answer; let i = index" class="answer-wrapper"
+      [ngClass]="{'correct': selectedAnswer === i}"
+      (click)="checkboxClick(i)">
+      <input type="radio" id="{{i}}" name="answer" value="{{answer.a}}">
+      <label for="{{i}}">{{answer.a}}</label>
+    </div>
+  </div>
+
+  <div class="subnotes">
+    <p>{{data.subNotes}}</p>
   </div>
 </div>

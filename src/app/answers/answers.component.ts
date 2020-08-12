@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { StateManagerService } from '../state-manager.service';
 
 @Component({
   selector: 'app-answers',
@@ -6,18 +9,50 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./answers.component.scss']
 })
 export class AnswersComponent implements OnInit {
-  @Input() data: string;
+  @Input() data: any;
 
-  constructor() { }
+  public clickDataSubscription: Subscription;
+  public clickData: any;
+
+  public answerClass; string;
+
+  public selectedAnswer: number;
+
+  constructor(private stateManagerService: StateManagerService) {}
 
   ngOnInit(): void {
-    console.log('data answer: ', this.data);
+    // console.log('data answer: ', this.data);
     // console.log('component answer: ', this.answer);
     // console.log('component subnotes: ', this.subNotes);
+    this.clickDataSubscription = this.stateManagerService.$clickData.subscribe(
+      value => {
+        this.resetAnswerVals(value);
+      }
+    )
   }
 
   public checkboxClick(val) {
-    // console.log('checkbox click: ', val);
+    console.log('checkbox click: ', val, ' : ', this.data.choice);
+    if (val == this.data.choice) {
+      console.log('right answer');
+      this.selectedAnswer = val;
+      this.answerClicked();
+    }
+  }
+
+  public answerClicked() {
+    this.answerClass = 'correct'
+    // return true;
+  }
+
+  public resetAnswerVals(val) {
+    this.selectedAnswer = null;
+  }
+
+  public answerUpdate() {
+    // if 
+    // return 'foo';
+    return 'correct';
   }
 
   // get getAnswer() {
