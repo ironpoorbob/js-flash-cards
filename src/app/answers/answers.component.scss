@@ -1,0 +1,43 @@
+
+.answers {
+  font-size: 20px;
+  strong, .subnotes {
+    color: #A1A1A1;
+  }
+  .answer {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #434343;
+    input {
+      margin-right: 20px;
+    }
+    .answer-wrapper {
+      margin-bottom: 3px;
+      padding-top: 5px;
+    }
+    .correct {
+      color: #000;
+      padding-left: 3px;
+      background-color:rgb(0, 255, 128);opacity:0.6;
+      -webkit-box-shadow: 0px 0px 5px 0px rgba(0,255,111,1);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(0,255,111,1);
+      box-shadow: 0px 0px 5px 0px rgba(0,255,111,1);
+    }
+    .wrong {
+      padding-left: 3px;
+      background-color:rgb(255,0,0);opacity:0.4;
+    }
+  }
+  .subnotes {
+    padding: 0 20px;
+  }
+
+
+
+  li {
+    list-style-type: none;
+    input {
+      margin-right: 20px;
+    }
+  }
+}

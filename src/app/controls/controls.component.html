@@ -1,0 +1,9 @@
+<div class="controls d-flex justify-content-center">
+  <button type="button" class="prev btn btn-primary" [disabled]="prevDisabled()"
+    (click)="handlePrevButtonClick()">Prev Question
+  </button>
+  <button type="button" class="random btn btn-secondary" (click)="handleRandomButtonClick()">Random Question</button>
+  <button type="button" class="next btn btn-primary" [disabled]="nextDisabled()"
+    (click)="handleNextButtonClick()">Next Question
+  </button>
+</div>
