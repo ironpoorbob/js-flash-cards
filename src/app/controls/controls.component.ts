@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StateManagerService } from '../state-manager.service';
 import { Subscription } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./controls.component.scss']
 })
 export class ControlsComponent implements OnInit {
-
+  @Input() controlData: any;
   public isValid: boolean;
 
   public dataSubscription: Subscription;
@@ -26,7 +26,7 @@ export class ControlsComponent implements OnInit {
         this.data = value;
         // this.count = value.count;
         // this.testDataLength = value.testDataLength;
-        // this.getSubscribeData(value);
+        this.getSubscribeData(value);
         // this.isInvalid(value);
       }
     )
@@ -38,7 +38,7 @@ export class ControlsComponent implements OnInit {
   }
 
   public getSubscribeData(data) {
-    // console.log('questions data: ', data);
+    console.log('questions data: ', data);
     
   }
 
@@ -53,9 +53,10 @@ export class ControlsComponent implements OnInit {
   }
 
   public nextDisabled() {
-    // console.log('button data: ', this.data);
+    console.log('button data: ', this.data);
     if(this.data){
-      if (this.data.count >= this.data.testDataLength-1) {
+      console.log('we got data');
+      if (this.data.count >= this.data.testDataLength-2) {
         console.log('hit the end');
         return true;
       }

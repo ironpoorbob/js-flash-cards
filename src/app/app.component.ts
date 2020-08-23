@@ -6,6 +6,13 @@ import { StateManagerService } from './state-manager.service';
 
 import { TestDataInterface } from './test-data-interface';
 
+declare var require: any
+
+// require('bootstrap');
+// require('bootstrap/js/src/index');
+// require('popper');
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,12 +27,13 @@ export class AppComponent implements OnInit{
   public count: number = 1;
   public prevCount: number = 1;
 
-  public testData: Array<object> = [];
+  public testData: Array<object>;
 
   constructor(private stateManagerService: StateManagerService) {}
 
   public ngOnInit() {
     // this.dataObj['testDataLength'] = this.testDataLength;
+    // console.log('test data type: ', typeof testdata);
     this.testData = testdata;
     // console.log('test data: ', testdata, ' : : ', testdata.length);
     // console.log('test DATA: ', this.testData, ' : : ', this.testData);

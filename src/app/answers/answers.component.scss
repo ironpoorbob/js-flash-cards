@@ -1,6 +1,15 @@
 
-.answers {
-  font-size: 20px;
+// @import "bootstrap";
+// @import "bootstrap/scss/bootstrap";
+// @import "bootstrap/scss/variables";
+// @import "bootstrap/scss/type";
+
+// @import "bootstrap/scss/functions";
+// // @import "bootstrap/scss/variables";
+// @import "bootstrap/scss/mixins";
+
+:host ::ng-deep, .answers {
+  font-size: 16px;
   strong, .subnotes {
     color: #A1A1A1;
   }
@@ -14,6 +23,20 @@
     .answer-wrapper {
       margin-bottom: 3px;
       padding-top: 5px;
+    }
+    &.flash {
+      code, pre {
+        // &.foo {
+          // font-size: 18px;
+          color: rgb(252, 158, 158);
+          // font-size: 40px;
+        // }
+      }
+      .correct {
+        code {
+          color: #000;
+        }
+      }
     }
     .correct {
       color: #000;
@@ -29,6 +52,9 @@
     }
   }
   .subnotes {
+    code {
+      color: #A1A1A1;
+    }
     padding: 0 20px;
   }
 
