@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class StateManagerService {
 
   private clickDataSource = new Subject<any>();
-  private dataSource = new Subject<any>();
+  private dataSource = new ReplaySubject<any>();
 
   public $clickData = this.clickDataSource.asObservable();
   public $data = this.dataSource.asObservable();
@@ -16,7 +16,7 @@ export class StateManagerService {
 
   public dataTransfer(data) {
     this.dataSource.next(data);
-    // console.log('data: ', data);
+    // console.log('observer data: ', data);
 
   }
 

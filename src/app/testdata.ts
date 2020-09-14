@@ -3,14 +3,20 @@ export const testdata = [
   {
     category: "flash",
     question: "Why did the chicken cross the road?",
-    answer: "To get from the left to the right, sir",
+    answer: "To get from the left to the right, sir!",
     subNotes: ""
   },
   {
     category: 'flash',
+    question: 'What are Regular expressions?',
+    answer: 'Regular expressions are patterns used to match character combinations in strings. In JavaScript, regular expressions are also objects. These patterns are used with the <code>exec()</code> and <code>test()</code> methods of RegExp, and with the <code>match(), matchAll(), replace(), replaceAll(), search()</code>, and <code>split()</code> methods of String.',
+    subNotes: ''
+  },
+  {
+    category: 'flash',
     question: 'What are template literals?',
-    answer: 'Template literals are string literals allowing embedded expressions. You can use multi-line strings and string interpolation features with them.',
-    subNotes: `example: \n <code>\`string text\` \n \`string text \${expression}\ string text\`</code>`
+    answer: 'Template literals are string literals allowing embedded expressions. You can use multi-line strings and string interpolation features with them. <br><br> \n example: \n <code>`string text`</code> \n or <code>`string text ${expression} string text`</code>',
+    subNotes: ''
   },
   {
     category: "flash",
@@ -57,7 +63,7 @@ export const testdata = [
   {
     category: "flash",
     question: "What is === operator?",
-    answer: "=== is called as strict equality operator which returns true when the two operands are having the same value without any type conversion.",
+    answer: "=== is called as strict equality operator which returns true when the two operands have the same value without any type conversion.",
     subNotes: ""
   },
   {
@@ -118,10 +124,15 @@ export const testdata = [
   },
   {
     category: 'flash',
-    question: 'What does the the string object\'s charAt() method do?',
-    answer: 'The charAt() method returns a new string consisting of the single UTF-16 code unit located at the specified offset into the string.',
+    question: 'What does the string object\'s charAt() method do?',
+    answer: 'The charAt() method returns a new string consisting of the single UTF-16 code unit located at the specified offset into the string. <br><br> <code> var myString = "foobar"; <br> var myChar = myString.charAt(3); <br> console.log("The char at: ", myChar) // The char at: b</code>',
     subNotes: 'It returns a character at the index of a string (ie: <code>mystring.charAt(index)</code>)'
   },
-  
+  {
+    category: 'flash',
+    question: 'What does the string indexOf() method do?',
+    answer: 'The <code>indexOf()</code> method returns the index within the calling String object of the first occurrence of the specified value, starting the search at <code>fromIndex</code>. Returns -1 if the value is not found. <br><br> <code>const paragraph = "The quick brown fox jumps over the lazy dog." <br>const searchTerm = "dog"; <br> const indexOfFirst = paragraph.indexOf(searchTerm);</code> <br> The value of <code>indexOfFirst</code> returns 40.',
+    subNotes: ''
+  }
 ]
 

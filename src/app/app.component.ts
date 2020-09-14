@@ -6,12 +6,7 @@ import { StateManagerService } from './state-manager.service';
 
 import { TestDataInterface } from './test-data-interface';
 
-declare var require: any
-
-// require('bootstrap');
-// require('bootstrap/js/src/index');
-// require('popper');
-
+declare var require: any;
 
 @Component({
   selector: 'app-root',
@@ -27,53 +22,65 @@ export class AppComponent implements OnInit{
   public count: number = 1;
   public prevCount: number = 1;
 
+  public dataObj: object = {
+    prevBtnDisabled: false,
+    nextBtnDisabled: false
+  }
+
   public testData: Array<object>;
 
   constructor(private stateManagerService: StateManagerService) {}
 
   public ngOnInit() {
-    // this.dataObj['testDataLength'] = this.testDataLength;
-    // console.log('test data type: ', typeof testdata);
     this.testData = testdata;
-    // console.log('test data: ', testdata, ' : : ', testdata.length);
-    // console.log('test DATA: ', this.testData, ' : : ', this.testData);
     this.clickDataSubscription = this.stateManagerService.$clickData.subscribe(
       value => {
         this.receiveClickData(value);
       }
     )
-
-    this.getData;
+    this.sendData();
   }
 
-  get getData() {
-    // console.log("TESTING 1 2 3: ", this.testData[this.count]);
-    return this.testData[this.count];
+  public sendData() {
+    this.testData[this.count]['testDataLength'] = this.testData.length;
+    this.testData[this.count]['count'] = this.count;
+
+    this.testData[this.count]['nextBtnDisabled'] = this.dataObj['nextBtnDisabled'];
+    this.testData[this.count]['prevBtnDisabled'] = this.dataObj['prevBtnDisabled'];
+
+    this.stateManagerService.dataTransfer(this.testData[this.count]);
   }
 
   public receiveClickData(val) {
-    // console.log('Getting info from service::::::: ', data);
-    if (val === 'next') {
+    if (val.direction === 'next') {
       this.count++;
-    } else if (val === 'prev') {
+    } else if (val.direction === 'prev') {
       this.count--;
-    } else if (val === 'random') {
+    } else if (val.direction === 'random') {
       this.count = this.getRandomQuestion();
       if (this.count === this.prevCount) {
         this.count = this.getRandomQuestion();
       }
     }
-
-    // console.log('numbers: the count: ', this.count, ' : prev : ', this.prevCount);
     this.prevCount = this.count;
-    this.getData;
+    this.controlDisableCheck();
+  }
+
+  public controlDisableCheck () {
+    if (this.count >= this.testData.length-1) {
+      this.dataObj['nextBtnDisabled'] = true;
+    } else if (this.count < 1) {
+      this.dataObj['prevBtnDisabled'] = true;
+    } else {
+      this.dataObj['nextBtnDisabled'] = false;
+      this.dataObj['prevBtnDisabled'] = false;
+    }
+    this.sendData();
   }
 
   public getRandomQuestion() {
-    console.log('random click!');
     const min = 0;
     const max = this.testData.length - 1;
-    // const max = 3;
     return Math.ceil(Math.random() * (max - min) + min);
   }
 

@@ -9,10 +9,14 @@ import { StateManagerService } from '../state-manager.service';
   styleUrls: ['./answers.component.scss']
 })
 export class AnswersComponent implements OnInit {
-  @Input() data: any;
+  // @Input() data: any;
+  public data: any = {};
 
   public clickDataSubscription: Subscription;
   public clickData: any;
+
+  public mainDataSubscription: Subscription;
+  public mainData: any;
 
   public answerClass; string;
 
@@ -24,6 +28,14 @@ export class AnswersComponent implements OnInit {
     // console.log('data answer: ', this.data);
     // console.log('component answer: ', this.answer);
     // console.log('component subnotes: ', this.subNotes);
+
+    this.mainDataSubscription = this.stateManagerService.$data.subscribe(
+      value => {
+        // console.log('getting answers: ', value);
+        this.data = value;
+      }
+    )
+
     this.clickDataSubscription = this.stateManagerService.$clickData.subscribe(
       value => {
         this.resetAnswerVals(value);
