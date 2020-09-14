@@ -12,85 +12,38 @@ export class ControlsComponent implements OnInit {
   public isValid: boolean;
 
   public dataSubscription: Subscription;
-  public data: any;
+  public data: any; // data received
 
-  // public prevDisabled: boolean;
-  // public nextDisabled: boolean;
-
-  // public count: number;
-  // public testDataLength: number;
+  // data sending to app
+  public clickData: object = {
+    direction: '',
+    count: 1
+  };
 
   constructor(private stateManagerService: StateManagerService) {
     this.dataSubscription = this.stateManagerService.$data.subscribe(
       value => {
         this.data = value;
-        // this.count = value.count;
-        // this.testDataLength = value.testDataLength;
-        this.getSubscribeData(value);
-        // this.isInvalid(value);
+        // console.log('value : ', this.data);
       }
     )
   }
 
-  ngOnInit(): void {
-    // this.isValid = true;
-    // console.log('initial data: ', this.data);
-  }
-
-  public getSubscribeData(data) {
-    console.log('questions data: ', data);
-    
-  }
-
-  public prevDisabled() {
-    // console.log('button data: ', this.data);
-    if(this.data){
-      if (this.data.count === 0) {
-        console.log('hit the end');
-        return true;
-      }
-    }
-  }
-
-  public nextDisabled() {
-    console.log('button data: ', this.data);
-    if(this.data){
-      console.log('we got data');
-      if (this.data.count >= this.data.testDataLength-2) {
-        console.log('hit the end');
-        return true;
-      }
-    }
-  }
-
-  public isInvalid(data) {
-    // this.nextDisabled = true;
-    // console.log('button data: ', data);
-    if (data.count >= data.testDataLength) {
-      console.log('hit the end');
-      // return true;
-      this.nextDisabled();
-      // this.nextDisabled = true;
-    } else {
-      // this.nextDisabled = false;
-    }
-    // return true;
-  }
-
+  ngOnInit(): void {}
+  
   public handleNextButtonClick() {
-    // console.log('click next');
-    // this.stateManagerService.dataTransfer('foo');
-    this.stateManagerService.getClickData('next');
+    this.clickData['direction'] = 'next';
+    this.stateManagerService.getClickData(this.clickData);
   }
 
   public handlePrevButtonClick() {
-    // console.log('click prev');
-    this.stateManagerService.getClickData('prev');
+    this.clickData['direction'] = 'prev';
+    this.stateManagerService.getClickData(this.clickData);
   }
 
   public handleRandomButtonClick() {
-    // console.log('click random');
-    this.stateManagerService.getClickData('random');
+    this.clickData['direction'] = 'random';
+    this.stateManagerService.getClickData(this.clickData);
   }
 
   public handleCheckAnswer() {
