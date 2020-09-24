@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { testdata } from './testdata';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { StateManagerService } from './state-manager.service';
 
 import { TestDataInterface } from './test-data-interface';
@@ -19,12 +19,18 @@ export class AppComponent implements OnInit{
   public clickDataSubscription: Subscription;
   public clickData: any;
 
+  public getAnswerDataSubscription: Subscription;
+  public answerData: any;
+  public isAnswerShown: boolean;
+
   public count: number = 1;
   public prevCount: number = 1;
 
   public dataObj: object = {
     prevBtnDisabled: false,
-    nextBtnDisabled: false
+    nextBtnDisabled: false,
+    isAnswerShown: false,
+    showAnswerBtnDisable: false
   }
 
   public testData: Array<object>;
@@ -33,26 +39,54 @@ export class AppComponent implements OnInit{
 
   public ngOnInit() {
     this.testData = testdata;
+    console.log('test data: ', this.testData);
     this.clickDataSubscription = this.stateManagerService.$clickData.subscribe(
       value => {
+        console.log('received data: ', value);
         this.receiveClickData(value);
       }
     )
+
+    this.getAnswerDataSubscription = this.stateManagerService.$answerData.subscribe(
+      value => {
+        console.log('apps: answer data : ', value);
+        // this.receiveClickData(value);
+        this.isAnswerShown = value;
+      }
+    )
+
+      /////// need to receive data from getAnswerData
+
     this.sendData();
   }
 
   public sendData() {
+    console.log('send data: this.dataObj :::: ', this.dataObj);
+    this.testData[this.count]['showAnswerBtnDisable'] = false;
+    this.testData[this.count]['isAnswerShown'] = false;
+
     this.testData[this.count]['testDataLength'] = this.testData.length;
     this.testData[this.count]['count'] = this.count;
 
     this.testData[this.count]['nextBtnDisabled'] = this.dataObj['nextBtnDisabled'];
     this.testData[this.count]['prevBtnDisabled'] = this.dataObj['prevBtnDisabled'];
 
+    if (this.testData[this.count]['category'] !== 'flash') {
+      this.testData[this.count]['showAnswerBtnDisable'] = false;
+      this.testData[this.count]['isAnswerShown'] = this.isAnswerShown;
+    } else {
+      this.testData[this.count]['isAnswerShown'] = this.dataObj['isAnswerShown'];
+      this.testData[this.count]['showAnswerBtnDisable'] = true;
+    }
+    console.log('test data ::::::::::: ', this.testData[this.count]);
     this.stateManagerService.dataTransfer(this.testData[this.count]);
   }
 
   public receiveClickData(val) {
-    if (val.direction === 'next') {
+    console.log('click value: ', val);
+    if (val.direction === '') {
+      this.dataObj['isAnswerShown'] = val.isAnswerShown;
+    } else if (val.direction === 'next') {
       this.count++;
     } else if (val.direction === 'prev') {
       this.count--;

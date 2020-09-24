@@ -3,6 +3,7 @@
     (click)="handlePrevButtonClick()">Prev Question
   </button>
   <button type="button" class="random btn btn-secondary" (click)="handleRandomButtonClick()">Random Question</button>
+  <button class="answer btn btn-secondary" (click)="handleShowAnswer()" [disabled]="data.isAnswerShown">Show Answer</button>
   <button type="button" class="next btn btn-primary" [disabled]="data.nextBtnDisabled"
     (click)="handleNextButtonClick()">Next Question
   </button>
