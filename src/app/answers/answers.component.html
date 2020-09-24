@@ -1,4 +1,4 @@
-<div class="answers">
+<div class="answers" *ngIf="answerData">
   <div class="answer flash" *ngIf="data.category === 'flash'">
     <p><strong>A:</strong>&nbsp;  <span [innerHTML]="data.answer"></span></p>
   </div>

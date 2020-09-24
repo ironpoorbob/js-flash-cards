@@ -17,8 +17,11 @@ export class ControlsComponent implements OnInit {
   // data sending to app
   public clickData: object = {
     direction: '',
-    count: 1
+    count: 1,
+    isAnswerShown: false
   };
+
+  public isAnswerShown: boolean = false;
 
   constructor(private stateManagerService: StateManagerService) {
     this.dataSubscription = this.stateManagerService.$data.subscribe(
@@ -34,16 +37,33 @@ export class ControlsComponent implements OnInit {
   public handleNextButtonClick() {
     this.clickData['direction'] = 'next';
     this.stateManagerService.getClickData(this.clickData);
+    // this.handleReset();
   }
 
   public handlePrevButtonClick() {
     this.clickData['direction'] = 'prev';
     this.stateManagerService.getClickData(this.clickData);
+    // this.handleReset();
   }
 
   public handleRandomButtonClick() {
     this.clickData['direction'] = 'random';
     this.stateManagerService.getClickData(this.clickData);
+    // this.handleReset();
+  }
+
+  public handleShowAnswer() {
+    console.log('click show')
+    // this.clickData['direction'] = '';
+    // this.clickData['isAnswerShown'] = true;
+    this.isAnswerShown = true;
+    this.stateManagerService.getAnswerData(this.isAnswerShown);
+  }
+
+  public handleReset() {
+    console.log('HANDLE RESET');
+    // this.clickData['isAnswerShown'] = false;
+    // this.stateManagerService.getClickData(this.clickData);
   }
 
   public handleCheckAnswer() {
